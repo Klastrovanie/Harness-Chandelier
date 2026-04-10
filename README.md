@@ -136,6 +136,10 @@ The example conversation datasets included in this repository reference "Figma"
 as a realistic user scenario. Figma® is a registered trademark of Figma, Inc.  
 This project is not affiliated with, endorsed by, or related to Figma, Inc. in any way.
 
+The example conversation datasets also reference "ChatGPT" as a realistic user scenario.  
+ChatGPT® is a registered trademark of OpenAI. This project is not affiliated with,  
+endorsed by, or related to OpenAI in any way.
+
 ---
 
 ## Copyright
