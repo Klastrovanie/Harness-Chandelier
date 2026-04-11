@@ -24,6 +24,8 @@ no matter how much the conversation moves around it.
 Anthropic's Harness Engineering solves **"how the AI maintains context"**.  
 Harness-Chandelier solves **"what the user actually wants"**.
 
+**Harness-Chandelier focuses on continuously discovering the user’s persistently repetitive intent** — the topics they keep returning to over long periods of time, even when the conversation drifts wildly.
+
 They are complementary — not competing.
 
 > While harness design ensures the AI agent maintains context across sessions,  
