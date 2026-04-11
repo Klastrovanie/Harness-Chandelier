@@ -83,6 +83,12 @@ def normalize_wgt(pdf: pd.DataFrame) -> pd.DataFrame:
     Returns:
         pdf with normalized 'wgt' column
     """
+    std = pdf['wgt'].std()
+
+    if std == 0 or pd.isna(std):
+        pdf['wgt'] = 1.0
+        return pdf
+
     pdf['wgt_zscore'] = (pdf['wgt'] - pdf['wgt'].mean()) / pdf['wgt'].std()
     min_zscore = pdf['wgt_zscore'].min()
     pdf['wgt'] = pdf['wgt_zscore'] + abs(min_zscore) + 1

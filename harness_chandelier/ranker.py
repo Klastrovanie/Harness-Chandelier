@@ -58,6 +58,17 @@ class HarnessChandelier:
         self.min_cluster_size = min_cluster_size
         self.base_time = base_time or datetime.now()
         self.random_seed = random_seed
+        self.topic_model = None 
+        self.messages = []
+        self.timestamps = []
+
+    def add_message(self, message: str, timestamp: datetime = None):
+        self.messages.append(message)
+        self.timestamps.append(timestamp or datetime.now())
+        
+        if len(self.messages) >= 5:
+            return self.fit(self.messages, self.timestamps)
+        return None
 
     def fit(self, messages: list, timestamps: Optional[List[datetime]] = None) -> RankerResult:
         np.random.seed(self.random_seed)
@@ -67,6 +78,10 @@ class HarnessChandelier:
             n_neighbors=self.n_neighbors,
             min_cluster_size=self.min_cluster_size
         )
+
+        valid_idx = [i for i, t in enumerate(topics) if t != -1]
+        if len(valid_idx) < 3:
+            return None
 
         if timestamps is None:
             timestamps = generate_realistic_timestamps(

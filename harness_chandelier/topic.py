@@ -2,6 +2,7 @@ from bertopic import BERTopic
 from cuml.manifold import UMAP
 from cuml.cluster import HDBSCAN
 
+_cached_model = None
 
 def build_topic_model(n_neighbors: int = 3, n_components: int = 2, min_cluster_size: int = 2):
     """
@@ -40,9 +41,13 @@ def extract_topics(messages: list, n_neighbors: int = 3, min_cluster_size: int =
         probs: probability matrix
         topic_model: fitted BERTopic model
     """
-    topic_model = build_topic_model(
-        n_neighbors=n_neighbors,
-        min_cluster_size=min_cluster_size
-    )
-    topics, probs = topic_model.fit_transform(messages)
-    return topics, probs, topic_model
+    global _cached_model
+
+    if _cached_model is None:
+        _cached_model = build_topic_model(
+            n_neighbors=n_neighbors,
+            min_cluster_size=min_cluster_size
+        )
+
+    topics, probs = _cached_model.fit_transform(messages)
+    return topics, probs, _cached_model
