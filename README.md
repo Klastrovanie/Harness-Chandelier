@@ -61,15 +61,37 @@ conda activate rapids
 
 ```python
 from harness_chandelier import HarnessChandelier
-
+# English
 ranker = HarnessChandelier(
+    lang="en",
+    weights={"delta_time": +0.2}
+)
+
+# Korean (English mixed conversations also supported)
+ranker = HarnessChandelier(
+    lang="ko",
     weights={"delta_time": +0.2}
 )
 
 # Option 1: auto-generate realistic timestamps
-result = ranker.fit(messages)
+result = ranker.fit(messages, timestamps=real_timestamps)
 
-# Option 2: provide real timestamps
+print(f"Main Topic: {result.main_topic}")
+print(f"Keywords: {result.main_topic_keywords}")
+print(f"Messages: {result.main_topic_messages}")
+
+# Option 2: auto-generate realistic timestamps
+from harness_chandelier.summary import summarize
+
+# Summarize dominant topic messages with your preferred AI provider
+summary = summarize(
+    result.main_topic_messages,
+    provider="anthropic",   # "anthropic", "openai", "gemini", "grok"
+    language="en"           # "en" or "ko"
+)
+print(summary)
+
+# Option 3: provide real timestamps
 result = ranker.fit(messages, timestamps=real_timestamps)
 
 print(result.main_topic)    # dominant topic
@@ -77,6 +99,32 @@ print(result.pagerank)      # topic importance scores
 print(result.topic_labels)  # topic per message
 ```
 ---
+
+Set your API key in `.env`:
+ 
+```
+ANTHROPIC_API_KEY=sk-ant-...
+OPENAI_API_KEY=sk-...
+GOOGLE_API_KEY=AI...
+XAI_API_KEY=xai-...
+```
+
+---
+ 
+## Language Support
+ 
+| Language | `lang=` | Tokenizer | Stopwords |
+|----------|---------|-----------|-----------|
+| English | `"en"` | BERTopic default | English |
+| Korean | `"ko"` | kiwipiepy (LGPL v3) | Korean |
+| Korean + English mixed | `"ko"` | kiwipiepy | Korean |
+| Other languages | `"en"` | BERTopic default | English |
+ 
+The embedding model `intfloat/multilingual-e5-base` supports 100+ languages regardless of `lang` setting.
+The `lang` parameter only affects stopword filtering and tokenization for keyword extraction.
+ 
+---
+
 
 ## Example Datasets
 
@@ -86,6 +134,7 @@ Three real-world conversation scenarios included:
 |---------|----------|---------|
 | `example-coder.ipynb` | AI repeatedly misses user's design specs | User keeps restating original intent |
 | `example-mixed-topics.ipynb` | User jumps between travel, coding, life advice | User returns to dominant topic |
+| `example-mixed-korean-topics.ipynb` | Travel / Coding / Life advice (batch) | Korean |
 
 > **Note:** All demo codes were performed on AWS g4dn.xlarge  
 > (NVIDIA T4 16GB GPU, the most affordable GPU instance on AWS).  
@@ -129,6 +178,10 @@ AGPL v3 — free for research and non-commercial use.
 The complete algorithm, source code, weighting formulas, pseudocode, and working implementation are provided openly under AGPL v3.
 For commercial licensing, leave a message on [Discussions](../../discussions).
 
+- intfloat/multilingual-e5-base — MIT License (Microsoft Research)
+- kiwipiepy — LGPL v3 (commercial use allowed)
+- BERTopic — MIT License
+- cuML, cuGraph — Apache 2.0 (NVIDIA RAPIDS)
 ---
 
 ## Disclaimer
