@@ -1,0 +1,14 @@
+# requirements/grok/requirements.txt
+# Install with: pip install -r requirements/grok/requirements.txt
+#
+# Required environment variable:
+#   XAI_API_KEY=xai-...
+#
+# Note: Grok uses OpenAI-compatible API, so openai package is required.
+
+bertopic
+sentence-transformers
+kiwipiepy
+scikit-learn
+python-dotenv
+openai

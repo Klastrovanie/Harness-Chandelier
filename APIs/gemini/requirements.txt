@@ -1,0 +1,12 @@
+# requirements/gemini/requirements.txt
+# Install with: pip install -r requirements/gemini/requirements.txt
+#
+# Required environment variable:
+#   GOOGLE_API_KEY=AI...
+
+bertopic
+sentence-transformers
+kiwipiepy
+scikit-learn
+python-dotenv
+google-genai

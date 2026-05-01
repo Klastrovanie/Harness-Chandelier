@@ -1,0 +1,12 @@
+# requirements/openai/requirements.txt
+# Install with: pip install -r requirements/openai/requirements.txt
+#
+# Required environment variable:
+#   OPENAI_API_KEY=sk-...
+
+bertopic
+sentence-transformers
+kiwipiepy
+scikit-learn
+python-dotenv
+openai

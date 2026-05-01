@@ -1,0 +1,12 @@
+# requirements/anthropic/requirements.txt
+# Install with: pip install -r requirements/anthropic/requirements.txt
+#
+# Required environment variable:
+#   ANTHROPIC_API_KEY=sk-ant-...
+
+bertopic
+sentence-transformers
+kiwipiepy
+scikit-learn
+python-dotenv
+anthropic
