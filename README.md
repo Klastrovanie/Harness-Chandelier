@@ -2,7 +2,7 @@
 Harness the Chandelier — connect to the center of your conversation.
 
 **First Public Release:** 2026-04-11  
-**Last Updated:** 2026-04-11
+**Last Updated:** 2026-05-01
 
 ---
 
