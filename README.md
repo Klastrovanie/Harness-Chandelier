@@ -72,17 +72,21 @@ ranker = HarnessChandelier(
     lang="ko",
     weights={"delta_time": +0.2}
 )
+```
 
-# Option 1: auto-generate realistic timestamps
+### Option 1: Batch (full conversation at once)
+```python
 result = ranker.fit(messages, timestamps=real_timestamps)
-
+ 
 print(f"Main Topic: {result.main_topic}")
 print(f"Keywords: {result.main_topic_keywords}")
 print(f"Messages: {result.main_topic_messages}")
+```
 
-# Option 2: auto-generate realistic timestamps
+### Option 2: AI API Summary
+```python
 from harness_chandelier.summary import summarize
-
+ 
 # Summarize dominant topic messages with your preferred AI provider
 summary = summarize(
     result.main_topic_messages,
@@ -90,17 +94,19 @@ summary = summarize(
     language="en"           # "en" or "ko"
 )
 print(summary)
+```
 
-# Option 3: provide real timestamps
-result = ranker.fit(messages, timestamps=real_timestamps)
-
-print(result.main_topic)    # dominant topic
-print(result.pagerank)      # topic importance scores
-print(result.topic_labels)  # topic per message
+### Option 3: Real-time (message by message)
+```python
+for message in live_messages:
+    result = ranker.add_message(message)
+ 
+    if result:  # returns result every 5+ messages
+        print(f"Current Dominant Topic: {result.main_topic}")
 ```
 ---
 
-Set your API key in `.env`:
+Set your API key in `.env` for AI summary option:
  
 ```
 ANTHROPIC_API_KEY=sk-ant-...
