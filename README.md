@@ -1,6 +1,8 @@
 # Harness-Chandelier
 Harness the Chandelier — connect to the center of your conversation.
 
+> **Commercial version:** the latest, upgraded Harness-Chandelier is available on [AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-wbjvirvso7vny). This open-source repository is no longer updated.
+> 
 [![Available on AWS Marketplace](https://img.shields.io/badge/AWS%20Marketplace-Available-FF9900?logo=amazonaws&logoColor=white)](https://aws.amazon.com/marketplace/pp/prodview-wbjvirvso7vny)
 
 **First Public Release:** 2026-04-11  
