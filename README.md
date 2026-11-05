@@ -1,8 +1,10 @@
 # Harness-Chandelier
 Harness the Chandelier — connect to the center of your conversation.
 
+[![Available on AWS Marketplace](https://img.shields.io/badge/AWS%20Marketplace-Available-FF9900?logo=amazonaws&logoColor=white)](https://aws.amazon.com/marketplace/pp/prodview-wbjvirvso7vny)
+
 **First Public Release:** 2026-04-11  
-**Last Updated:** 2026-05-01
+**Last Updated:** 2026-11-06
 
 ---
 
@@ -182,7 +184,14 @@ specific combination by any party**.
 
 AGPL v3 — free for research and non-commercial use.  
 The complete algorithm, source code, weighting formulas, pseudocode, and working implementation are provided openly under AGPL v3.
-For commercial licensing, leave a message on [Discussions](../../discussions).
+
+### Commercial version
+
+For commercial use, purchase **Harness-Chandelier MCP Server** on [AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-wbjvirvso7vny).  
+The AWS Marketplace edition is the latest, upgraded version of Harness-Chandelier, with automatic multilingual support.  
+This open-source repository is no longer updated; new features and fixes are released only in the commercial version.
+
+### Third-party components (open-source version)
 
 - intfloat/multilingual-e5-base — MIT License (Microsoft Research)
 - kiwipiepy — LGPL v3 (commercial use allowed)
